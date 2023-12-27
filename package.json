@@ -1,0 +1,11 @@
+{
+  "name": "doctor-appointment-mern-app",
+  "version": "1.0.0",
+  "description": "MERN DOctor Appointment App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Harsh Vardhan",
+  "license": "ISC"
+}
