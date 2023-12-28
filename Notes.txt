@@ -907,7 +907,7 @@ State:
 18. apiSlice
 
 in frontend
-npm i @redux/toolkit react-redux
+npm i @reduxjs/toolkit react-redux
 
 react-redux is a bridge that connects reeact and redux
 redux can be used with vanillajs vue angular etc. 

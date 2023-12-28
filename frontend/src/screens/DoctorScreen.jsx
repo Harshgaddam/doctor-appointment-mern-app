@@ -6,16 +6,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const DoctorScreen = () => {
-  let { id: doctorId } = useParams();
-  doctorId = Number(doctorId);
-  console.log(doctorId);
-
+  const { id: doctorId } = useParams();
   const [doctor, setDoctor] = useState({});
   useEffect(() => {
     const fetchDoctor = async () => {
-      const { data } = await axios.get(
-        `http://localhost:5000/api/doctor/${doctorId}`
-      );
+      const { data } = await axios.get(`/api/doctor/${doctorId}`);
       setDoctor(data);
     };
     fetchDoctor();

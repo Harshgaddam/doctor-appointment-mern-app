@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Rating from "./Rating";
 
 const Doctor = ({ doctor }) => {
-  console.log(doctor);
   return (
     <Card className="my-3 p-3 rounded">
       <Link to={`/api/doctor/${doctor._id}`} style={{ textDecoration: "none" }}>
