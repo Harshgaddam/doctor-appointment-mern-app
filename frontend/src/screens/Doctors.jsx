@@ -10,7 +10,9 @@ const Doctors = () => {
       {isFetching ? (
         <h2>Loading...</h2>
       ) : error ? (
-        <h3>{error}</h3>
+        <h3>
+          <h3>{error?.data?.message || error?.error}</h3>
+        </h3>
       ) : (
         <div>
           <Row>
