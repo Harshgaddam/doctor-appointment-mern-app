@@ -1,0 +1,21 @@
+main {
+  min-height: 80vh;
+}
+
+.rating span {
+  margin: 0.1rem;
+}
+
+.rating svg {
+  color: green;
+  border: true;
+}
+
+.rating {
+  display: inline-block; /* Set the display to inline-block to keep stars on the same line */
+}
+
+.rating-text {
+  display: inline-block; /* Set the display to inline-block to keep text on the same line */
+  margin-left: 5px; /* Add some left margin for spacing */
+}

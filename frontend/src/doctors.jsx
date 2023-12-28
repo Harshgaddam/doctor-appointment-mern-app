@@ -1,0 +1,51 @@
+const doctors = [
+  {
+    _id: 1,
+    name: "Dr. John Doe",
+    image: "/images/doctor_cardiologist.png",
+    description: "Dr. John Doe is a cardiologist with 20 years of experience.",
+    rating: 4.5,
+    numReviews: 12,
+    price: 1000,
+    available: true,
+    speciality: "Cardiologist",
+    location: "Hyderabad",
+    experience: "20 years",
+    education: "MBBS | MD",
+    languages: "English",
+  },
+  {
+    _id: 2,
+    name: "Dr. Jane Smith",
+    image: "/images/doctor_dermatologist.png",
+    description: "Dr. Jane Smith specializes in dermatology and skincare.",
+    rating: 4.2,
+    numReviews: 8,
+    price: 800,
+    available: true,
+    speciality: "Dermatologist",
+    location: "Bangalore",
+    experience: "15 years",
+    education: "MBBS | MD",
+    languages: "English, Hindi",
+  },
+  {
+    _id: 3,
+    name: "Dr. Michael Johnson",
+    image: "/images/doctor_orthopedic.png",
+    description:
+      "Dr. Michael Johnson is an orthopedic surgeon with expertise in joint health.",
+    rating: 4.8,
+    numReviews: 15,
+    price: 1200,
+    available: true,
+    speciality: "Orthopedic Surgeon",
+    location: "Mumbai",
+    experience: "18 years",
+    education: "MBBS | MS",
+    languages: "English, Marathi",
+  },
+  // Add more doctors with different specialities as needed
+];
+
+export default doctors;
