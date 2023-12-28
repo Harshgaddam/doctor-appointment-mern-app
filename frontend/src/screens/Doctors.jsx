@@ -1,4 +1,4 @@
-import doctors from "../doctors";
+import doctors from "../../../backend/data/doctors";
 import { Row, Col } from "react-bootstrap";
 import Doctor from "../components/Doctor";
 
