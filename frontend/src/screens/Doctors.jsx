@@ -1,8 +1,19 @@
-import doctors from "../../../backend/data/doctors";
 import { Row, Col } from "react-bootstrap";
 import Doctor from "../components/Doctor";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Doctors = () => {
+  const [doctors, setDoctors] = useState([]);
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      const { data } = await axios.get(`http://localhost:5000/api/doctors`);
+      setDoctors(data);
+    };
+
+    fetchDoctors();
+  }, []);
+
   return (
     <div>
       <Row>

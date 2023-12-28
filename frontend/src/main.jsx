@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomeScreen from "./screens/HomeScreen.jsx";
 import DoctorScreen from "./screens/DoctorScreen.jsx";
+import Doctors from "./screens/Doctors.jsx";
 import App from "./App.jsx";
 import {
   createBrowserRouter,
@@ -15,7 +16,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
-      <Route path="/doctor/:id" element={<DoctorScreen />} />
+      <Route path="/api/doctor/:id" element={<DoctorScreen />} />
+      <Route path="/api/doctors" element={<Doctors />} />
     </Route>
   )
 );

@@ -1,18 +1,23 @@
 import express from "express";
-import products from "./data/doctors.js";
+import doctors from "./data/doctors.js";
+import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
+import connectDB from "./config/db.js";
 const port = process.env.PORT || 5000;
 
 const app = express();
+app.use(cors());
+
+connectDB();
 
 app.get("/api/doctors", (req, res) => {
-  res.json(products);
+  res.json(doctors);
 });
 
 app.get("/api/doctor/:id", (req, res) => {
-  const product = products.find((p) => p._id === Number(req.params.id));
-  res.json(product);
+  const doctor = doctors.find((p) => p._id === Number(req.params.id));
+  res.json(doctor);
 });
 
 app.get("/", (req, res) => {

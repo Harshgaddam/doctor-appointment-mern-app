@@ -6,7 +6,7 @@ const Doctor = ({ doctor }) => {
   console.log(doctor);
   return (
     <Card className="my-3 p-3 rounded">
-      <Link to={`/doctor/${doctor._id}`} style={{ textDecoration: "none" }}>
+      <Link to={`/api/doctor/${doctor._id}`} style={{ textDecoration: "none" }}>
         <Card.Img src={doctor.image} variant="top" />
         <Card.Body>
           <Card.Title as="div" className="text-center">

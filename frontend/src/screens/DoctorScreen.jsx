@@ -2,18 +2,28 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Rating from "../components/Rating";
-import doctors from "../../../backend/data/doctors";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const DoctorScreen = () => {
   let { id: doctorId } = useParams();
   doctorId = Number(doctorId);
-  let doctor = doctors.find((d) => d._id === doctorId);
+  console.log(doctorId);
+
+  const [doctor, setDoctor] = useState({});
+  useEffect(() => {
+    const fetchDoctor = async () => {
+      const { data } = await axios.get(
+        `http://localhost:5000/api/doctor/${doctorId}`
+      );
+      setDoctor(data);
+    };
+    fetchDoctor();
+  }, [doctorId]);
 
   if (!doctor) {
     return <div>Doctor not found</div>;
   }
-
-  console.log(doctor);
 
   return (
     <>

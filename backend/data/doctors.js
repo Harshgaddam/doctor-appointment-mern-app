@@ -2,6 +2,9 @@ const doctors = [
   {
     _id: 1,
     name: "Dr. John Doe",
+    username: "john123",
+    email: "john@email.com",
+    password: "123456",
     image: "/images/doctor_cardiologist.png",
     description: "Dr. John Doe is a cardiologist with 20 years of experience.",
     rating: 4.5,
@@ -17,6 +20,9 @@ const doctors = [
   {
     _id: 2,
     name: "Dr. Jane Smith",
+    username: "jane123",
+    email: "jane@email.com",
+    password: "123456",
     image: "/images/doctor_dermatologist.png",
     description: "Dr. Jane Smith specializes in dermatology and skincare.",
     rating: 4.2,
@@ -32,6 +38,9 @@ const doctors = [
   {
     _id: 3,
     name: "Dr. Michael Johnson",
+    username: "michael123",
+    email: "michael@email.com",
+    password: "123456",
     image: "/images/doctor_orthopedic.png",
     description:
       "Dr. Michael Johnson is an orthopedic surgeon with expertise in joint health.",
