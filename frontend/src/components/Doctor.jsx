@@ -1,12 +1,17 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { DOCTOR_URL } from "../constants";
 import Rating from "./Rating";
 
 const Doctor = ({ doctor }) => {
   return (
     <Card className="my-3 p-3 rounded">
-      <Link to={`/api/doctor/${doctor._id}`} style={{ textDecoration: "none" }}>
-        <Card.Img src={doctor.image} variant="top" />
+      <Link to={`/${doctor._id}`}>
+        <Card.Img
+          src={doctor.image}
+          variant="top"
+          style={{ height: "250px", objectFit: "cover" }}
+        />
         <Card.Body>
           <Card.Title as="div" className="text-center">
             <strong style={{ color: "black" }}>{doctor.name}</strong>

@@ -3,18 +3,20 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
-import { useLoginMutation } from "../slices/userApiSlice";
+import { useRegisterMutation } from "../slices/userApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
 
-const LoginScreen = () => {
+const RegisterScreen = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [login, { isLoading }] = useLoginMutation();
+  const [register, { isLoading }] = useRegisterMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -30,22 +32,42 @@ const LoginScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    try {
-      const res = await login({ email, password }).unwrap();
-      dispatch(setCredentials({ ...res }));
-      navigate(redirect);
-    } catch (err) {
-      toast.error(err?.data?.message || err.error);
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+    } else {
+      try {
+        const res = await register({ name, email, password }).unwrap();
+        dispatch(setCredentials({ ...res }));
+        navigate(redirect);
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
     }
   };
 
   return (
     <FormContainer>
-      <h1>Sign In</h1>
-
+      <h1>Register</h1>
       <Form onSubmit={submitHandler}>
+        <Form.Group className="my-2" controlId="name">
+          <Form.Label>
+            <strong>Name</strong>
+            <br />
+          </Form.Label>
+          <Form.Control
+            type="name"
+            placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
         <Form.Group className="my-2" controlId="email">
-          <Form.Label>Email Address</Form.Label>
+          <Form.Label>
+            <strong>Email Address</strong>
+            <br />
+          </Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter email"
@@ -55,7 +77,10 @@ const LoginScreen = () => {
         </Form.Group>
 
         <Form.Group className="my-2" controlId="password">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>
+            <strong>Password</strong>
+            <br />
+          </Form.Label>
           <Form.Control
             type="password"
             placeholder="Enter password"
@@ -63,14 +88,26 @@ const LoginScreen = () => {
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
+        <Form.Group className="my-2" controlId="confirmPassword">
+          <Form.Label>
+            <strong>Confirm Password</strong>
+            <br />
+          </Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
 
         <Button
           disabled={isLoading}
           type="submit"
           variant="primary"
-          style={{ color: "white", backgroundColor: "green" }}
+          style={{ backgroundColor: "green", color: "white" }}
         >
-          Sign In
+          Register
         </Button>
 
         {isLoading && <h2>Loading...</h2>}
@@ -78,12 +115,12 @@ const LoginScreen = () => {
 
       <Row className="py-3">
         <Col>
-          New Customer?{" "}
+          Already have an account?{" "}
           <Link
-            to={redirect ? `/register?redirect=${redirect}` : "/register"}
+            to={redirect ? `/login?redirect=${redirect}` : "/login"}
             style={{ color: "green" }}
           >
-            Register
+            Login
           </Link>
         </Col>
       </Row>
@@ -91,4 +128,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;

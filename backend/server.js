@@ -10,6 +10,7 @@ import userRoutes from "./routes/userRoutes.js";
 
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 const port = process.env.PORT || 5000;
 
@@ -24,16 +25,10 @@ app.use(cookieParser());
 app.use("/api/doctor", doctorRoutes);
 app.use("/api/users", userRoutes);
 
+app.use(notFound);
+app.use(errorHandler);
+
 connectDB();
-
-app.get("/api/doctors", (req, res) => {
-  res.json(doctors);
-});
-
-app.get("/api/doctor/:id", (req, res) => {
-  const doctor = doctors.find((p) => p._id === Number(req.params.id));
-  res.json(doctor);
-});
 
 app.get("/", (req, res) => {
   res.send("API is running...");
