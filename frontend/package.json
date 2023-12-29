@@ -5,8 +5,9 @@
   "type": "module",
   "proxy": "http://localhost:5000",
   "scripts": {
-    "start": "vite --port 3000",
-    "build": "vite build"
+    "start": "vite --port 3000 --host",
+    "build": "vite build",
+    "host": "vite --host"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",

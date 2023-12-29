@@ -1,6 +1,5 @@
 const doctors = [
   {
-    _id: 1,
     name: "Dr. John Doe",
     username: "john123",
     email: "john@email.com",
@@ -18,13 +17,12 @@ const doctors = [
     languages: "English",
   },
   {
-    _id: 2,
-    name: "Dr. Jane Smith",
+    name: "Dr. Suchi Agarwal",
     username: "jane123",
     email: "jane@email.com",
     password: "123456",
     image: "/images/doctor_dermatologist.png",
-    description: "Dr. Jane Smith specializes in dermatology and skincare.",
+    description: "Dr. Suchi garwal specializes in dermatology and skincare.",
     rating: 4.2,
     numReviews: 8,
     price: 800,
@@ -36,7 +34,6 @@ const doctors = [
     languages: "English, Hindi",
   },
   {
-    _id: 3,
     name: "Dr. Michael Johnson",
     username: "michael123",
     email: "michael@email.com",

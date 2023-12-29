@@ -1,7 +1,7 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import User from "../models/userModel.js";
+import Appointment from "../models/AppointmentModel.js";
 import generateToken from "../utils/generateToken.js";
-import bcrypt from "bcryptjs";
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -75,7 +75,52 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route   PUT /api/users/profile
 // @access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-  res.send("update user profile");
+  const user = await User.findById(req.body._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+const bookAppointment = asyncHandler(async (req, res) => {
+  const { doctorId, userId, appointmentDate } = req.body;
+
+  // Create a new appointment
+  const newAppointment = new Appointment({
+    doctorId: doctorId,
+    userId: userId,
+    appointmentDate: new Date(appointmentDate),
+  });
+
+  // Save the appointment to the database
+  const savedAppointment = await newAppointment.save();
+
+  res.status(201).json(savedAppointment);
+});
+
+const myAppointments = asyncHandler(async (req, res) => {
+  const appointments = await Appointment.find({ userId: req.body._id }).sort({
+    appointmentDate: "desc",
+  });
+
+  res.json(appointments);
 });
 
 // @desc    Delete user
@@ -120,4 +165,6 @@ export {
   getUserById,
   updateUser,
   logoutUser,
+  bookAppointment,
+  myAppointments,
 };

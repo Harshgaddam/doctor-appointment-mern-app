@@ -1,5 +1,4 @@
 import express from "express";
-import doctors from "./data/doctors.js";
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();

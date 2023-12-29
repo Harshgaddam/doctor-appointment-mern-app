@@ -46,9 +46,13 @@ const Header = () => {
                       </strong>
                     }
                     id="username"
+                    align="end"
                   >
                     <LinkContainer to="/profile">
                       <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="my-appointments">
+                      <NavDropdown.Item>My Appointments</NavDropdown.Item>
                     </LinkContainer>
                     <NavDropdown.Item onClick={logoutHandler}>
                       Logout

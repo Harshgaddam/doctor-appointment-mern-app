@@ -10,7 +10,7 @@ const Doctor = ({ doctor }) => {
         <Card.Img
           src={doctor.image}
           variant="top"
-          style={{ height: "250px", objectFit: "cover" }}
+          style={{ objectFit: "cover" }}
         />
         <Card.Body>
           <Card.Title as="div" className="text-center">
