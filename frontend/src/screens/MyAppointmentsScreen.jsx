@@ -6,12 +6,13 @@ import BookAppointment from "./BookAppointment";
 
 const MyAppointmentsScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
-
   const {
     data: appointments,
     isLoading,
     error,
-  } = useMyAppointmentsQuery(userInfo);
+  } = useMyAppointmentsQuery({ userId: userInfo._id });
+
+  console.log(appointments);
 
   return (
     <>
@@ -28,6 +29,7 @@ const MyAppointmentsScreen = () => {
                 <tr>
                   <th>DATE</th>
                   <th>DOCTOR</th>
+                  <th>SPECIALITY</th>
                   <th>STATUS</th>
                 </tr>
               </thead>
@@ -35,7 +37,8 @@ const MyAppointmentsScreen = () => {
                 {appointments.map((appointment) => (
                   <tr key={appointment._id}>
                     <td>{appointment.createdAt.substring(0, 10)}</td>
-                    <td>{appointment.doctorId}</td>
+                    <td>{appointment.doctorName}</td>
+                    <td>{appointment.doctorSpeciality}</td>
                     <td>{appointment.status}</td>
                   </tr>
                 ))}

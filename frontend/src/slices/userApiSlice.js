@@ -30,6 +30,13 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    bookAppointment: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/book-appointment`,
+        method: "POST",
+        body: data,
+      }),
+    }),
     myAppointments: builder.query({
       query: (data) => ({
         url: `${USERS_URL}/my-appointments`,
@@ -45,5 +52,6 @@ export const {
   useLogoutMutation,
   useRegisterMutation,
   useProfileMutation,
+  useBookAppointmentMutation,
   useMyAppointmentsQuery,
 } = userApiSlice;

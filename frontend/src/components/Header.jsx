@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { NavDropdown } from "react-bootstrap";
 import { useLogoutMutation } from "../slices/userApiSlice";
 import { logout } from "../slices/authSlice";
+import { clearBooking } from "../slices/bookingSlice";
 
 const Header = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -15,6 +16,7 @@ const Header = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
+      diapatch(clearBooking());
       navigate("/");
     } catch (err) {
       console.error(err);
