@@ -1,14 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState =
-  localStorage.getItem("booking") &&
-  JSON.parse(localStorage.getItem("booking"));
+const initialState = localStorage.getItem("booking")
+  ? JSON.parse(localStorage.getItem("booking"))
+  : {};
 
 const bookingSlice = createSlice({
   name: "booking",
   initialState,
   reducers: {
     saveBooking: (state, action) => {
+      console.log(action.payload);
       state.booking = action.payload;
       localStorage.setItem("booking", JSON.stringify(state.booking));
     },

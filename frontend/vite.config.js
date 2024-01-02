@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      input: "src/index.js",
+      input: "src/App.jsx",
     },
   },
   server: {
@@ -13,6 +13,7 @@ export default defineConfig({
       "/api": {
         target: "http://localhost:5000",
         changeOrigin: true,
+        ws: true,
       },
     },
   },

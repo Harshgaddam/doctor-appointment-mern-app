@@ -6,6 +6,7 @@ import { useGetDoctorDetailsQuery } from "../slices/doctorApiSlice.js";
 import { useEffect } from "react";
 import { setDoctor } from "../slices/doctorApiSlice.js";
 import { useDispatch } from "react-redux";
+import BookAppointment from "../screens/BookAppointment";
 
 const DoctorScreen = () => {
   const dispatch = useDispatch();
@@ -50,13 +51,7 @@ const DoctorScreen = () => {
                   <strong>{doctor.education}</strong>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Button
-                    className="btn-block"
-                    type="button"
-                    style={{ backgroundColor: "green", color: "white" }}
-                  >
-                    Book Appointment
-                  </Button>
+                  <BookAppointment />
                 </ListGroup.Item>
               </ListGroup>
             </Col>

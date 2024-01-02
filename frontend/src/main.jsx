@@ -7,6 +7,7 @@ import LoginScreen from "./screens/LoginScreen.jsx";
 import Doctors from "./screens/Doctors.jsx";
 import RegisterScreen from "./screens/RegisterScreen.jsx";
 import ProfileScreen from "./screens/ProfileScreen.jsx";
+import PaymentScreen from "./screens/paymentScreen.jsx";
 import MyAppointmentsScreen from "./screens/MyAppointmentsScreen.jsx";
 import BookAppointmentScreen from "./screens/BookAppointmentScreen.jsx";
 import { Provider } from "react-redux";
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path="/doctors" element={<Doctors />} />
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
+      <Route path="/payment" element={<PaymentScreen />} />
       <Route path="/profile" element={<ProfileScreen />} />
       <Route path="/my-appointments" element={<MyAppointmentsScreen />} />
       <Route path="/book-appointment" element={<BookAppointmentScreen />} />
