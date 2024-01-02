@@ -1,6 +1,5 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { DOCTOR_URL } from "../constants";
 import Rating from "./Rating";
 
 const Doctor = ({ doctor }) => {

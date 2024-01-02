@@ -1,8 +1,8 @@
 import express from "express";
-import { getDoctor, getDoctorById } from "../controllers/doctorController.js";
+import { getDoctors, getDoctorById } from "../controllers/doctorController.js";
 const router = express.Router();
 
-router.get("/", getDoctor);
+router.get("/", getDoctors);
 router.get("/:id", getDoctorById);
 
 export default router;

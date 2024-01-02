@@ -1,5 +1,21 @@
 import { DOCTOR_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
+import { createSlice } from "@reduxjs/toolkit";
+
+const doctor = createSlice({
+  name: "doctor",
+  initialState: {
+    doctor: {},
+  },
+  reducers: {
+    setDoctor: (state, action) => {
+      state.doctor = action.payload;
+    },
+  },
+});
+
+export const { setDoctor } = doctor.actions;
+export default doctor.reducer;
 
 export const doctorSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

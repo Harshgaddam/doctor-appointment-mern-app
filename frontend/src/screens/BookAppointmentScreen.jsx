@@ -4,10 +4,48 @@ import { Form } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { saveBooking } from "../slices/bookingSlice";
+import StripeCheckout from "react-stripe-checkout";
+import { useBookAppointmentMutation } from "../slices/userApiSlice.js";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { USERS_URL } from "../constants.js";
 
 const BookAppointment = () => {
+  const { userInfo } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [stripeToken, setStripeToken] = useState(null);
+
+  const onToken = (token) => {
+    console.log(token);
+    setStripeToken(token);
+  };
+
+  useEffect(() => {
+    const makeBooking = async () => {
+      console.log("Inside");
+      const booking = JSON.parse(localStorage.getItem("booking"));
+      console.log(booking);
+      const userId = userInfo._id;
+      const appointmentDate = booking.date;
+      const token = stripeToken.id;
+      const book = await axios.post(`${USERS_URL}/book-appointment`, {
+        doctorId: "658fb35f4e5d4b02b256c149",
+        userId,
+        appointmentDate,
+        token,
+      });
+      console.log(book);
+      navigate("/");
+    };
+
+    stripeToken && makeBooking();
+  }, [stripeToken, dispatch, navigate, userInfo._id]);
 
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -133,17 +171,16 @@ const BookAppointment = () => {
       </FormContainer>
       <br />
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Button
-          type="button"
-          className="btn-block"
-          onClick={submitHandler}
-          style={{
-            backgroundColor: "green",
-            color: "white",
-          }}
+        <StripeCheckout
+          description={`Your total is $${100 * 100}`}
+          amount={100 * 100}
+          token={onToken}
+          stripeKey="pk_test_51Nrx2fSDfaBohUdERdB8pNfpXHWIsfd1ZFyo5b5zuESbjln0AVmjDfZ3BFDojoX1ZtIO8iIRsVKBKt3uJb3cjYLO00rDOPrZm2"
         >
-          Book
-        </Button>
+          <Button style={{ backgroundColor: "green", color: "white" }}>
+            CHECKOUT NOW
+          </Button>
+        </StripeCheckout>
       </div>
     </>
   );

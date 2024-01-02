@@ -1,7 +1,7 @@
 import Doctor from "../models/doctorModel.js";
 import asyncHandler from "../middleware/asyncHandler.js";
 
-const getDoctor = asyncHandler(async (req, res) => {
+const getDoctors = asyncHandler(async (req, res) => {
   const doctors = await Doctor.find({});
   res.json(doctors);
 });
@@ -12,4 +12,4 @@ const getDoctorById = asyncHandler(async (req, res) => {
   return res.status(404).json({ message: "Doctor not found" });
 });
 
-export { getDoctor, getDoctorById };
+export { getDoctors, getDoctorById };

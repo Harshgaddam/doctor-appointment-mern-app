@@ -2,9 +2,6 @@ import mongoose from "mongoose";
 
 const doctorSchema = mongoose.Schema(
   {
-    _id: {
-      type: String,
-    },
     name: {
       type: String,
       required: true,
@@ -51,6 +48,6 @@ const doctorSchema = mongoose.Schema(
   }
 );
 
-const DoctorDB = mongoose.model("DoctorDB", doctorSchema);
+const Doctor = mongoose.model("Doctor", doctorSchema);
 
-export default DoctorDB;
+export default Doctor;

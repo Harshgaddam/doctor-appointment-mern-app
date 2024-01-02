@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 
-app.use("/api/doctor", doctorRoutes);
+app.use("/api/doctors", doctorRoutes);
 app.use("/api/users", userRoutes);
 
 app.use(notFound);

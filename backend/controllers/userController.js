@@ -1,6 +1,7 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import User from "../models/userModel.js";
 import Appointment from "../models/AppointmentModel.js";
+import Doctor from "../models/doctorModel.js";
 import generateToken from "../utils/generateToken.js";
 
 // @desc    Auth user & get token
@@ -100,13 +101,20 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 });
 
 const bookAppointment = asyncHandler(async (req, res) => {
-  const { doctorId, userId, appointmentDate } = req.body;
+  console.log(req.body);
+  const { doctorId, userId, appointmentDate, token } = req.body;
+
+  const doctorDetails = await Doctor.findById(doctorId);
+  console.log(doctorDetails);
 
   // Create a new appointment
   const newAppointment = new Appointment({
-    doctorId: doctorId,
+    doctor: doctorId,
+    doctorName: doctorDetails.name,
+    doctorSpeciality: doctorDetails.speciality,
     userId: userId,
     appointmentDate: new Date(appointmentDate),
+    token: token,
   });
 
   // Save the appointment to the database
@@ -116,9 +124,13 @@ const bookAppointment = asyncHandler(async (req, res) => {
 });
 
 const myAppointments = asyncHandler(async (req, res) => {
-  const appointments = await Appointment.find({ userId: req.body._id }).sort({
-    appointmentDate: "desc",
-  });
+  console.log(req.body);
+  const appointments = await Appointment.find({ userId: req.body.userId }).sort(
+    {
+      appointmentDate: "desc",
+    }
+  );
+  console.log(appointments);
 
   res.json(appointments);
 });

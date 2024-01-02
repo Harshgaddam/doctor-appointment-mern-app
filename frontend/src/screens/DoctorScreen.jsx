@@ -3,9 +3,18 @@ import { Row, Col, Image, ListGroup, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Rating from "../components/Rating";
 import { useGetDoctorDetailsQuery } from "../slices/doctorApiSlice.js";
+import { useEffect } from "react";
+import { setDoctor } from "../slices/doctorApiSlice.js";
+import { useDispatch } from "react-redux";
+
 const DoctorScreen = () => {
+  const dispatch = useDispatch();
   const { id: doctorId } = useParams();
   const { data: doctor, isLoading, error } = useGetDoctorDetailsQuery(doctorId);
+
+  useEffect(() => {
+    doctor && dispatch(setDoctor(doctor));
+  });
 
   return (
     <>
